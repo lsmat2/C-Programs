@@ -12,12 +12,17 @@ exec: ./helloworld.c
 	$(CXX) $^ -o $@
 # ACTUAL: clang ./helloworld.c -o exec
 
+numb: ./typeRepresentation.c
+	$(CXX) $^ -o exec2
+# ACTUAL: clang ./typeRepresentation.c -o exec2
+
 debug: ./helloworld.c
 	$(CXX) -g -Wall $^ -o $@
 # ACTUAL: clang -g -Wall ./helloworld.c -o exec
 
 clean:
 	rm ./exec ./debug
+
 
 
 .DEFAULT_GOAL := exec

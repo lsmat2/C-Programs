@@ -15,23 +15,47 @@ void unknown(char *A)
     }
 }
 
-void analyze(char *s) {
+void analyze(void *s) {
+    printf("Address of ptr = %p \n", s);
+    // FOR VALUE, NEED TO KNOW TYPE: printf("Value of ptr = %d \n", (int)(*s));
     printf("In terms of num OF BYTES\n");
-    int numElements = sizeof(s) / sizeof(s[0]);
-    printf("Num bytes: %d \n", numElements);
+    // int numElements = sizeof(s) / sizeof(s[0]);
+    // printf("Num bytes: %d \n", numElements);
     printf("Sizeof(s): %lu \n", sizeof(s));
     printf("Sizeof(s[0]): %lu \n", sizeof(s[0]));
 }
 
 void sizeOfPrimitives() {
-    printf("Size of short: %zu\n", sizeof(short));
-    printf("Size of int: %zu\n", sizeof(int));
-    printf("Size of long: %zu\n", sizeof(long));
-    printf("Size of long long: %zu\n", sizeof(long long));
-    printf("Size of size_t: %zu\n", sizeof(size_t));
-    printf("Size of void*: %zu\n", sizeof(void*));
-    printf("Size of float: %zu\n", sizeof(float));
-    printf("Size of double: %zu\n", sizeof(double));
+    printf("size of char: %zu\n", sizeof(char));            // 1
+    printf("Size of short: %zu\n", sizeof(short));          // 2
+    printf("Size of int: %zu\n", sizeof(int));              // 4
+    printf("Size of long: %zu\n", sizeof(long));            // 8
+    printf("Size of long long: %zu\n", sizeof(long long));  // 8
+    printf("Size of size_t: %zu\n", sizeof(size_t));        // 8
+    printf("Size of void*: %zu\n", sizeof(void*));          // 8
+    printf("Size of float: %zu\n", sizeof(float));          // 4
+    printf("Size of double: %zu\n", sizeof(double));        // 8
+}
+
+/**
+ * Displays addresses and bytes in RAM
+ * 
+ * @param addr      - the first byte to show
+ * @param bytes     - the number of bytes to show
+ * @param highToLow - if true (!=0), prints higest-address byte first
+ * @param base      - 8 for octal, 10 for decimal, else hexadecimal
+ */
+void showMemory(void *addr, size_t bytes, int highToLow, int base) {
+    const char *format = (base == 8) ? "%p: %03o\n" : (base == 10) ? "%p: %3d\n" : "%p: %02x\n";
+    if (highToLow) {
+        for(unsigned char *p = addr+bytes-1; p>=addr; p-=1) {
+            printf(format, p, *p);
+        }
+    } else {
+        for(unsigned char *p = addr; p<addr+bytes; p+=1) {
+            printf(format, p, *p);
+        }
+    }
 }
 
 void scratch() {
@@ -158,21 +182,21 @@ int main() {
 
     // printf("%d", strlen("ABCDEFG"));
 
-    // char s[20];
-    // strcpy(s, "CS340");
-    // unknown(s);
-    // printf("%s", s);
+    // for(int ch = 33 ; ch <= 126; ch++ ) {
+    //     printf("ASCII value = %d, Hex value = %x, Character = %c\n", ch, ch, ch);
+    // }
 
-    int ch;
+    // scratch();
+    // sizeOfPrimitives();
+    // char* p = "helloWORLD!!";
+    // analyze(p);
 
-    for( ch = 33 ; ch <= 126; ch++ ) {
-        printf("ASCII value = %d, Hex value = %x, Character = %c\n", ch, ch, ch);
-    }
-
-    scratch();
-    char* p = "helloWORLD!!";
-    analyze(p);
-    sizeOfPrimitives();
+    // set up some memory to display
+    short a[2];
+    a[0] = 0x1234;
+    
+    // display it
+    showMemory(a, sizeof(a), 0, 16);
 
     return 0;
 }
