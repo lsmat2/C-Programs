@@ -121,7 +121,7 @@ int main() {
     int ch;
 
     for( ch = 0 ; ch <= 127; ch++ ) {
-        printf("ASCII value = %d, Character = %c\n", ch , ch );
+        printf("ASCII value = %d, Hex value = %x, %Character = %c\n", ch, ch, ch );
     }
 
     scratch();
