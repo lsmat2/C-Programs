@@ -15,6 +15,25 @@ void unknown(char *A)
     }
 }
 
+void analyze(char *s) {
+    printf("In terms of num OF BYTES\n");
+    int numElements = sizeof(s) / sizeof(s[0]);
+    printf("Num bytes: %d \n", numElements);
+    printf("Sizeof(s): %lu \n", sizeof(s));
+    printf("Sizeof(s[0]): %lu \n", sizeof(s[0]));
+}
+
+void sizeOfPrimitives() {
+    printf("Size of short: %zu\n", sizeof(short));
+    printf("Size of int: %zu\n", sizeof(int));
+    printf("Size of long: %zu\n", sizeof(long));
+    printf("Size of long long: %zu\n", sizeof(long long));
+    printf("Size of size_t: %zu\n", sizeof(size_t));
+    printf("Size of void*: %zu\n", sizeof(void*));
+    printf("Size of float: %zu\n", sizeof(float));
+    printf("Size of double: %zu\n", sizeof(double));
+}
+
 void scratch() {
     char s2[8] = "CS@UIUC"; // Initialize a char array on the stack using a string literal
 
@@ -102,7 +121,7 @@ void scratch() {
     NOTE: REMOVING the null byte of dest and ADDING a null byte to the end of the concatenated string.
     */
     char c[24] = "I love ";
-    strcat(c, "systems!");
+    strcat(c, "systems!\n");
     printf("%s", c);    // "I love systems!"
 
 
@@ -146,11 +165,14 @@ int main() {
 
     int ch;
 
-    for( ch = 0 ; ch <= 127; ch++ ) {
-        printf("ASCII value = %d, Hex value = %x, %Character = %c\n", ch, ch, ch );
+    for( ch = 33 ; ch <= 126; ch++ ) {
+        printf("ASCII value = %d, Hex value = %x, Character = %c\n", ch, ch, ch);
     }
 
     scratch();
+    char* p = "helloWORLD!!";
+    analyze(p);
+    sizeOfPrimitives();
 
     return 0;
 }
