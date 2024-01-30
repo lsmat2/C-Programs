@@ -77,8 +77,10 @@ void scratch() {
     %x or %X	        Hexadecimal representation
     %n	                Prints nothing
     %%	                Prints % character
-    
     */
+
+
+
 
     /*      STRING LENGTH
 
@@ -87,20 +89,37 @@ void scratch() {
     */
 
 
+
+
     /*       STRING CONCATENATION
 
-        char *strcat(char *dest, const char *src);          --->        "dest""src"
-        char *strncat(char *dest, const char *src, size_t n);           --->        strncat performs about the same function, but only concatenates the first n bytes of src onto dest.
+    char *strcat(char *dest, const char *src);          --->        "dest""src"
+    char *strncat(char *dest, const char *src, size_t n);           --->        strncat performs about the same function, but only concatenates the first n bytes of src onto dest.
     
     Given two strings src and dest, 
     strcat will concatenate src onto dest. 
     strcat will also handle null bytes, 
-    REMOVING the null byte of dest and ADDING a null byte to the end of the concatenated string.
-    
+    NOTE: REMOVING the null byte of dest and ADDING a null byte to the end of the concatenated string.
     */
     char c[24] = "I love ";
     strcat(c, "systems!");
     printf("%s", c);    // "I love systems!"
+
+
+
+
+    /*      STRING COPY
+
+    char *strcpy(char *dest, const char *src);
+    char *strncpy(char *dest, const char *src, size_t n);
+    char *strdup(const char *s);
+    
+    Given two character arrays dest and src, 
+    strcpy will copy the contents of src into dest character by character, 
+    stopping when it reaches a null byte 
+    NOTE: strcpy will also insert a terminating null byte.
+    
+    */
 }
 
 
