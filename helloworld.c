@@ -111,14 +111,21 @@ void scratch() {
     /*      STRING COPY
 
     char *strcpy(char *dest, const char *src);
-    char *strncpy(char *dest, const char *src, size_t n);
-    char *strdup(const char *s);
-    
-    Given two character arrays dest and src, 
-    strcpy will copy the contents of src into dest character by character, 
-    stopping when it reaches a null byte 
+    - Given two character arrays dest and src,  strcpy will copy the contents of src into dest character by character (left to right), stopping when it reaches a null byte 
     NOTE: strcpy will also insert a terminating null byte.
+
+    char *strncpy(char *dest, const char *src, size_t n);
+    - strcpy but will stop copying from src into dest when EITHER:  it has copied n characters or when it reaches a null byte, depending on which comes first. 
+    - CAREFUL: if strncpy does not reach the null byte before copying n characters, it will NOT insert the null byte into the character array it is copying into.
     
+
+    char *strdup(const char *s);
+    - NOTE: By contrast, strdup will create a duplicate of some string s, 
+    allocate memory for that duplicate, 
+    and return a pointer pointing to the first character of the duplicate. 
+    - NOTE: In practice, using strdup is equivalent to malloc'ing the required amount of memory for a string 
+    and then copying that string using strcpy. 
+    As with anything that is malloc'ed, the duplicated string should be deallocated with free to avoid memory leaks.
     */
 }
 
