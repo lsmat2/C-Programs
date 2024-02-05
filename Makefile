@@ -12,16 +12,20 @@ exec: ./helloworld.c
 	$(CXX) $^ -o $@
 # ACTUAL: clang ./helloworld.c -o exec
 
-numb: ./type_representation.c
-	$(CXX) $^ -o $@
-# ACTUAL: clang ./typeRepresentation.c -o numb
-
 debug: ./helloworld.c
 	$(CXX) -g -Wall $^ -o $@
 # ACTUAL: clang -g -Wall ./helloworld.c -o exec
 
+numb: ./type_representation.c
+	$(CXX) $^ -o $@
+# ACTUAL: clang ./typeRepresentation.c -o numb
+
+dataStructures: ./data_structures.c
+	$(CXX) $^ -o $@
+# ACTUAL: clang ./data_structures.c -o dataStructures
+
 clean:
-	rm ./exec ./debug ./numb
+	rm ./exec ./debug ./numb ./dataStructures
 
 
 
