@@ -15,8 +15,6 @@ void printBinary(void *ptr, size_t size) {
     printf("\n");
 }
 
-
-
 // Function to print hexadecimal representation of a value
 void printHex(void *ptr, size_t size) {
     unsigned char *byte = (unsigned char*)ptr;
@@ -37,25 +35,53 @@ void printBinaryAndHex(void *value, size_t size) {
 
 // Function to print binary representation of a string
 void printStringInfo(char *str) {
-    printf("Input: %s\n", str);
     size_t size = strlen(str);
-    printf("Binary: ");
+    printf("\nInput: %s\n\n", str);
+
+    printf("Human:\t\t");
+    for (int i = 0; i < size; i++) {
+        printf("%c\t", str[i]);
+    }
+
+    printf("\nDecimal:\t");
+    for (int i = 0; i < size; i++) {
+        printf("%d\t", str[i]);
+    }
+
+    printf("\nBinary:\t\t");
     for (int i = 0; i < size; i++) {
         for (int j = 7; j >= 0; j--) {
             printf("%d", (str[i] >> j) & 1);
         }
         printf(" ");
     }
-    printf("\nHexadecimal: ");
+    
+    printf("\nHexadecimal:\t");
     for (int i = 0; i < size; i++) {
-        printf("%02X ", str[i]);
+        printf("%02X\t", str[i]);
     }
-    printf("\n");
+
+    printf("\n\n");
 
 }
 
 int main() {
-    // Test the function with different types
+    // Initialize string(s)
+    char *ex1 = "Name 1!";
+    char *ex2 = "hello";
+    char *ex3 = "how are you";
+    char *ex4 = "exampleee";
+    char *ex5 = "lets try this!";
+    // Call  print function
+    printStringInfo(ex1);
+    printStringInfo(ex2);
+    printStringInfo(ex3);
+    printStringInfo(ex4);
+    printStringInfo(ex5);
+
+    return 0;
+}
+
     // int intValue = 42;
     // float floatValue = 3.14;
     // char charValue = 'A';
@@ -64,12 +90,6 @@ int main() {
     // printBinaryAndHex(&ex, sizeof(char));
 
     // printBinaryAndHex(ex2, strlen(ex2)*sizeof(char));
-    char *example = "Example!";
-    printStringInfo(example);
-
-    char *example2 = "yayayay!";
-    printStringInfo(example2);
-    
     // printf("Integer: %d\n", intValue);
     // printBinaryAndHex(&intValue, sizeof(int));
     // printf("\nFloat: \n");
@@ -86,6 +106,3 @@ int main() {
     // short y = ~ 0x40;
     // printf("\n short y: ~ 0x40 \n");
     // printBinaryAndHex(&y, sizeof(short));
-
-    return 0;
-}
