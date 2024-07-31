@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+void printLine() {
+    printf("\n");
+    for (int i = 0; i < 100; i++) { printf("-"); }
+    printf("\n\n");
+}
 
 // Function to print binary representation of a value
 void printBinary(void *ptr, size_t size) {
@@ -34,50 +39,50 @@ void printBinaryAndHex(void *value, size_t size) {
 }
 
 // Function to print binary representation of a string
-void printStringInfo(char *str) {
+void printStringRepresentations(char *str) {
     size_t size = strlen(str);
-    printf("\nInput: %s\n\n", str);
 
-    printf("Human:\t\t");
-    for (int i = 0; i < size; i++) {
-        printf("%c\t", str[i]);
-    }
+    printf("\n\t\t");
+    for (int i = 0; i < size; i++) { printf("%c\t\t", str[i]); }
 
     printf("\nDecimal:\t");
-    for (int i = 0; i < size; i++) {
-        printf("%d\t", str[i]);
-    }
+    for (int i = 0; i < size; i++) { printf("%d\t\t", str[i]); }
 
     printf("\nBinary:\t\t");
     for (int i = 0; i < size; i++) {
-        for (int j = 7; j >= 0; j--) {
-            printf("%d", (str[i] >> j) & 1);
-        }
-        printf(" ");
+        for (int j = 7; j >= 0; j--) { printf("%d", (str[i] >> j) & 1); }
+        printf("\t");
     }
     
     printf("\nHexadecimal:\t");
-    for (int i = 0; i < size; i++) {
-        printf("%02X\t", str[i]);
-    }
-
-    printf("\n\n");
-
+    for (int i = 0; i < size; i++) { printf("%02X\t\t", str[i]); }
 }
 
+void requestAndPrintWordInfo() {
+    char word[30];
+    printf("Enter your word: \n");
+    scanf("%s", word);
+}
+
+void printInfoForever() {
+    char word[30];
+    printf("\n\nEnter a word to see it's binary, hexadecimal, and more representations! (enter q or ctrl+C to quit)\n");
+    printLine();
+    printf("\n");
+    while (1) {
+        printf("Your word: ");
+        scanf("%s", word);
+        if (strcmp(word, "q") == 0) { return; }
+        else { printStringRepresentations(word); }
+        printf("\n");
+        printLine();
+    }
+}
+
+
 int main() {
-    // Initialize string(s)
-    char *ex1 = "Name 1!";
-    char *ex2 = "hello";
-    char *ex3 = "how are you";
-    char *ex4 = "exampleee";
-    char *ex5 = "lets try this!";
-    // Call  print function
-    printStringInfo(ex1);
-    printStringInfo(ex2);
-    printStringInfo(ex3);
-    printStringInfo(ex4);
-    printStringInfo(ex5);
+    
+    printInfoForever();
 
     return 0;
 }
